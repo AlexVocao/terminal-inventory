@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+ <h1 class="text-center mt-5">Welcome to the Home Page</h1>
+ <div sec:authorize="!isAuthenticated()" class="text-center mt-4">
+     <a th:href="@{/login}" class="btn btn-primary">Login</a>
+ </div>
+    <div sec:authorize="isAuthenticated()" class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                User Information
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    <strong>User:</strong> <span sec:authentication="principal.username"></span><br>
+                    <strong>Role(s):</strong> <span sec:authentication="principal.authorities"></span>
+                </p>
+
+
+
+                <div sec:authorize="hasRole('ALL')" class="mb-3">
+                    <a th:href="@{/inventory/users}" class="btn btn-secondary mt-3">Users</a>
+                </div>
+
+                <div>
+                    <a th:href="@{/inventory/terminals}" class="btn btn-success">Terminals</a>
+                </div>
+
+
+                <form th:action="@{/logout}" method="POST">
+                    <button type="submit" class="btn btn-danger mt-3">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

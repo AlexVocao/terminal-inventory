@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container mt-5">
+    <h3 class="mb-4">Terminals</h3>
+    <a th:href="@{/inventory/terminals/add}" class="btn btn-primary mb-3">Add Terminal</a>
+    <a th:href="@{/inventory}" class="btn btn-secondary mb-3">Home</a>
+
+    <form th:action="@{/inventory/terminals}" method="GET" th:object="${terminals}">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Model</th>
+                <th>Manufacturer</th>
+                <th>Serial number</th>
+                <th>Form factor</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="terminal : ${terminals}">
+                <td th:text="${terminal.id}">1</td>
+                <td th:text="${terminal.model}">Model X</td>
+                <td th:text="${terminal.manufacturer}">Manufacturer Y</td>
+                <td th:text="${terminal.serialNumber}">SN123456</td>
+                <td th:text="${terminal.formFactor}">COUNTERTOP</td>
+                <td th:text="${terminal.status}">DEPLOYED</td>
+                <td>
+                    <a th:href="@{'/inventory/terminals/edit/'+${terminal.id}}" class="btn btn-info btn-sm">Edit</a>
+                    <a th:href="@{'/inventory/terminals/delete/'+${terminal.id}}" class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure you want to delete this terminal?');">Delete</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

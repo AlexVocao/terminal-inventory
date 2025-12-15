@@ -1,17 +1,42 @@
-target/
+# Maven
+target/        # Ignore the Maven build output directory
 pom.xml.tag
-pom.xml.releaseBackup
-pom.xml.versionsBackup
 pom.xml.next
-release.properties
-dependency-reduced-pom.xml
-buildNumber.properties
-.mvn/timing.properties
-# https://maven.apache.org/wrapper/#usage-without-binary-jar
-.mvn/wrapper/maven-wrapper.jar
+pom.xml.bak
+pom.xml.versions
+pom.xml.snapshots
+# Maven end
 
-# Eclipse m2e generated files
-# Eclipse Core
-.project
-# JDT-specific (Eclipse Java Development Tools)
+# IDE-specific files (Eclipse, IntelliJ, VS Code)
+.idea/         # IntelliJ IDEA project files
+.eclipse/
 .classpath
+.project
+.settings/
+*.iml          # IntelliJ IDEA module files
+.vscode/       # VS Code settings
+
+# Compiled classes and archives
+*.class
+*.jar
+*.war
+*.ear          #
+
+# Logs and temporary files
+logs/
+*.log
+*.lock
+*.tmp
+*.swp
+*~
+
+# OS-specific files
+.DS_Store      # macOS system files
+Thumbs.db      # Windows system files
+
+# Environment variables and sensitive data
+.env           # Environment variable files
+# Exclude application properties/yml if they contain secrets (e.g., database passwords)
+# application.properties
+# application.yml
+# Use environment variables or a secrets manager for sensitive info
